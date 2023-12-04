@@ -1,0 +1,38 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "ENVS543 Narratives"
+  author: "Rodney Dyer"
+  date: "12/5/2023"
+  page-navigation: true
+  chapters:
+    - index.qmd
+    - welcome.qmd
+    - analysis_environment.qmd
+    - markdown.qmd
+    - quarto.qmd
+    - github.qmd
+    - data_types.qmd
+    - data_containers.qmd
+    - factors.qmd
+    - classic_graphics.qmd
+    - ggplot_graphics.qmd
+    - tidyverse.qmd
+    - functions.qmd
+    - joins.qmd
+    - statistical_inferences.qmd
+    - discrete_data.qmd
+    - correlation.qmd
+    - regression.qmd 
+    - anova.qmd
+
+
+
+format:
+  html:
+    theme: cosmo
+
+
+

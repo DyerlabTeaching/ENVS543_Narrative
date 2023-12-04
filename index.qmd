@@ -1,0 +1,7 @@
+# Preface {.unnumbered}
+
+This is a compilation of all the narrative and slide components that we covered in this course.  
+
+<center>
+![](media/dyer.png)
+</center>
