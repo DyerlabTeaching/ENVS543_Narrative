@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>ENVS543 Narratives - 5&nbsp; Git &amp; GitHub</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./data_types.html" rel="next">
+<link href="./quarto.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./github.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Git &amp; GitHub</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">ENVS543 Narratives</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./welcome.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Environmental Data Literacy</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analysis_environment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The R Environment</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./markdown.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Markdown</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Quarto</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./github.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Git &amp; GitHub</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Basic Data Types</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_containers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Basic Data Containers in R</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./factors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Factor Data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./classic_graphics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basic Graphics in R</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot_graphics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><code>ggplot2</code> Graphics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Tidyverse</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./joins.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Joins</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./statistical_inferences.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Statistical Inferences</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./discrete_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Contingency Analysisq</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./correlation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Corelation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./anova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Analysis of Variance</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#look-familiar" id="toc-look-familiar" class="nav-link active" data-scroll-target="#look-familiar"><span class="header-section-number">5.1</span> Look Familiar?</a></li>
+  <li><a href="#what-is-git" id="toc-what-is-git" class="nav-link" data-scroll-target="#what-is-git"><span class="header-section-number">5.2</span> What is Git</a></li>
+  <li><a href="#lifetime-of-a-document" id="toc-lifetime-of-a-document" class="nav-link" data-scroll-target="#lifetime-of-a-document"><span class="header-section-number">5.3</span> Lifetime of a Document</a></li>
+  <li><a href="#persistence-through-diffs" id="toc-persistence-through-diffs" class="nav-link" data-scroll-target="#persistence-through-diffs"><span class="header-section-number">5.4</span> Persistence through Diffs</a></li>
+  <li><a href="#lifetime-of-a-document-1" id="toc-lifetime-of-a-document-1" class="nav-link" data-scroll-target="#lifetime-of-a-document-1"><span class="header-section-number">5.5</span> Lifetime of a Document</a></li>
+  <li><a href="#lifetime-of-a-document-2" id="toc-lifetime-of-a-document-2" class="nav-link" data-scroll-target="#lifetime-of-a-document-2"><span class="header-section-number">5.6</span> Lifetime of a Document</a></li>
+  <li><a href="#lifetime-of-a-document-3" id="toc-lifetime-of-a-document-3" class="nav-link" data-scroll-target="#lifetime-of-a-document-3"><span class="header-section-number">5.7</span> Lifetime of a Document</a></li>
+  <li><a href="#lifetime-of-a-document-4" id="toc-lifetime-of-a-document-4" class="nav-link" data-scroll-target="#lifetime-of-a-document-4"><span class="header-section-number">5.8</span> Lifetime of a Document</a></li>
+  <li><a href="#lifetime-of-a-document-5" id="toc-lifetime-of-a-document-5" class="nav-link" data-scroll-target="#lifetime-of-a-document-5"><span class="header-section-number">5.9</span> Lifetime of a Document</a></li>
+  <li><a href="#git-in-projects" id="toc-git-in-projects" class="nav-link" data-scroll-target="#git-in-projects"><span class="header-section-number">5.10</span> Git in Projects</a></li>
+  <li><a href="#remote-locations" id="toc-remote-locations" class="nav-link" data-scroll-target="#remote-locations"><span class="header-section-number">5.11</span> Remote Locations</a></li>
+  <li><a href="#synchronizing-repositories" id="toc-synchronizing-repositories" class="nav-link" data-scroll-target="#synchronizing-repositories"><span class="header-section-number">5.12</span> Synchronizing Repositories</a></li>
+  <li><a href="#pulling-pushing." id="toc-pulling-pushing." class="nav-link" data-scroll-target="#pulling-pushing."><span class="header-section-number">5.13</span> Pulling &amp; Pushing.</a></li>
+  <li><a href="#collaborations" id="toc-collaborations" class="nav-link" data-scroll-target="#collaborations"><span class="header-section-number">5.14</span> Collaborations</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">5.15</span> </a></li>
+  <li><a href="#the-profile-page" id="toc-the-profile-page" class="nav-link" data-scroll-target="#the-profile-page"><span class="header-section-number">5.16</span> The Profile Page</a></li>
+  <li><a href="#github-repositories" id="toc-github-repositories" class="nav-link" data-scroll-target="#github-repositories"><span class="header-section-number">5.17</span> Github Repositories</a></li>
+  <li><a href="#access-controls" id="toc-access-controls" class="nav-link" data-scroll-target="#access-controls"><span class="header-section-number">5.18</span> Access Controls</a></li>
+  <li><a href="#user-names-passwords" id="toc-user-names-passwords" class="nav-link" data-scroll-target="#user-names-passwords"><span class="header-section-number">5.19</span> User Names &amp; Passwords</a></li>
+  <li><a href="#personal-access-tokens" id="toc-personal-access-tokens" class="nav-link" data-scroll-target="#personal-access-tokens"><span class="header-section-number">5.20</span> Personal Access Tokens</a></li>
+  <li><a href="#scoped-tokens" id="toc-scoped-tokens" class="nav-link" data-scroll-target="#scoped-tokens"><span class="header-section-number">5.21</span> Scoped Tokens</a></li>
+  <li><a href="#creating-a-repository" id="toc-creating-a-repository" class="nav-link" data-scroll-target="#creating-a-repository"><span class="header-section-number">5.22</span> Creating a Repository</a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"><span class="header-section-number">5.23</span> </a></li>
+  <li><a href="#online-editing" id="toc-online-editing" class="nav-link" data-scroll-target="#online-editing"><span class="header-section-number">5.24</span> Online Editing</a></li>
+  <li><a href="#going-forward" id="toc-going-forward" class="nav-link" data-scroll-target="#going-forward"><span class="header-section-number">5.25</span> Going Forward</a></li>
+  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><span class="header-section-number">5.26</span> Questions</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Git &amp; GitHub</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="look-familiar" class="level2" data-background-image="media/file_naming.png" data-background-size="90%" data-number="5.1">
+<h2 data-background-image="media/file_naming.png" data-background-size="90%" data-number="5.1" class="anchored" data-anchor-id="look-familiar"><span class="header-section-number">5.1</span> Look Familiar?</h2>
+</section>
+<section id="what-is-git" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="what-is-git"><span class="header-section-number">5.2</span> What is Git</h2>
+<p>Git is a distributed <em>versioning system</em></p>
+<div class="incremental">
+<ul class="incremental">
+<li>Easy for collaboration.<br>
+</li>
+<li>Easy track entire history of changes in your projects, documents, and code.<br>
+</li>
+<li>Complete history of all changes.</li>
+<li>Easily revert to previous instances.</li>
+<li>Project Based.</li>
+<li>Branching</li>
+</ul>
+</div>
+</section>
+<section id="lifetime-of-a-document" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="lifetime-of-a-document"><span class="header-section-number">5.3</span> Lifetime of a Document</h2>
+<p>Consider a single file. After the first edit, you now have two differents ones.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+  A[File v1] --&gt;|Edited| B[File v2]
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in">
+<p>In Google Docs, you can see the version history (and revert) while in Word you can use track changes to see edits but revisions are more complicated…</p>
+</div>
+</section>
+<section id="persistence-through-diffs" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="persistence-through-diffs"><span class="header-section-number">5.4</span> Persistence through Diffs</h2>
+<p>What we <strong>do not do</strong> is keep multiple versions of the file around as complete files. What is done is that the original document and only the changes made to the file—called <em>diffs</em>—are saved.</p>
+<div class="fragment fade-in">
+<p><img src="media/diff.png" class="img-fluid"></p>
+</div>
+</section>
+<section id="lifetime-of-a-document-1" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="lifetime-of-a-document-1"><span class="header-section-number">5.5</span> Lifetime of a Document</h2>
+<p>Add a new figure to the file and now you have three different entities.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+  A[File v1] --&gt;|Edited| B[File v2]
+  B --&gt;|New Figure| C[File v3]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="lifetime-of-a-document-2" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="lifetime-of-a-document-2"><span class="header-section-number">5.6</span> Lifetime of a Document</h2>
+<p>Perhaps the figure did not work out, and you decided to replace it with an image.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div>
+
+<pre class="mermaid mermaid-js">graph LR
+  A[File v1] --&gt;|Edited| B[File v2]
+  B --&gt;|Figure| C[File v3]
+  B --&gt;|Table| D[File v4]
+</pre>
+</div>
+</div>
+</div>
+</div>
+<p>For each new “revision”, you create a separate instance of the file itself.</p>
+</section>
+<section id="lifetime-of-a-document-3" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="lifetime-of-a-document-3"><span class="header-section-number">5.7</span> Lifetime of a Document</h2>
+<p>Continue editing and making revisions.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div>
+
+<pre class="mermaid mermaid-js">graph LR
+  A[File v1] --&gt;|Edited| B[File v2]
+  B --&gt;|Figure| C[File v3]
+  B --&gt;|Table| D[File v4]
+  D --&gt;|Edited| E[File v5]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="lifetime-of-a-document-4" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="lifetime-of-a-document-4"><span class="header-section-number">5.8</span> Lifetime of a Document</h2>
+<p>Eventually, you finish making revisions to the file.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div>
+
+<pre class="mermaid mermaid-js">graph LR
+  A[File v1] --&gt;|Edited| B[File v2]
+  B --&gt;|Figure| C[File v3]
+  B --&gt;|Table| D[File v4]
+  D --&gt;|Edited| E[File v5]
+  E --&gt;|Submitted| F[Thesis!]
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in">
+<p><strong>Git</strong> allows you to have access to the entire <em>history</em> of the file and can <em>revert</em> to any of the previous version you want to.</p>
+</div>
+</section>
+<section id="lifetime-of-a-document-5" class="level2" data-number="5.9">
+<h2 data-number="5.9" class="anchored" data-anchor-id="lifetime-of-a-document-5"><span class="header-section-number">5.9</span> Lifetime of a Document</h2>
+<p>Not all documents are incremental. Submitting for publication requires a different layout, citation format, etc. than for your thesis. Both of these are derived from <em>File v5</em> as different <em>branches</em>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div>
+
+<pre class="mermaid mermaid-js">graph LR
+  A[File v1] --&gt;|Edited| B[File v2]
+  B --&gt;|Figure| C[File v3]
+  B --&gt;|Table| D[File v4]
+  D --&gt;|Edited| E[File v5]
+  E --&gt;|Submitted| F[Thesis!]
+  E --&gt;|Submitted| G[Publication]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="git-in-projects" class="level2" data-number="5.10">
+<h2 data-number="5.10" class="anchored" data-anchor-id="git-in-projects"><span class="header-section-number">5.10</span> Git in Projects</h2>
+<p>This is a process that can include hundreds of files, data sets, images, shapefiles, etc. It is a <em>Project Based</em> approach.</p>
+<p>And the entire project is referred to as a <strong>Repository</strong>.</p>
+</section>
+<section id="remote-locations" class="level2" data-number="5.11">
+<h2 data-number="5.11" class="anchored" data-anchor-id="remote-locations"><span class="header-section-number">5.11</span> Remote Locations</h2>
+<p>A git repository can live in many places.</p>
+<div class="incremental">
+<ul class="incremental">
+<li>On your laptop<br>
+</li>
+<li>On the lab computer<br>
+</li>
+<li>On a thumb drive (please do not use these any more)<br>
+</li>
+<li>On your home computer</li>
+<li>On you iPhone</li>
+</ul>
+</div>
+</section>
+<section id="synchronizing-repositories" class="level2" data-number="5.12">
+<h2 data-number="5.12" class="anchored" data-anchor-id="synchronizing-repositories"><span class="header-section-number">5.12</span> Synchronizing Repositories</h2>
+<p>Having a single remote <strong>Repository</strong> allows you to keep all the remote repositories in sync.</p>
+<div class="incremental">
+<ol class="incremental" type="1">
+<li>Establish Repository on <a href="https://github.com">GitHub</a>.<br>
+</li>
+<li><strong>Clone</strong> that repository to your local computer.</li>
+<li>Make changes.</li>
+<li><strong>Commit</strong> changes when you are at a logical stoping point.</li>
+<li><strong>PUSH</strong> the one or more committed changes to <a href="https://github.com">GitHub</a>.</li>
+<li>On other computers with <em>local</em> copies, you <strong>PULL</strong> changes from <a href="https://github.com">GitHub</a> to retrieve any changes you’ve made.</li>
+</ol>
+</div>
+</section>
+<section id="pulling-pushing." class="level2" data-number="5.13">
+<h2 data-number="5.13" class="anchored" data-anchor-id="pulling-pushing."><span class="header-section-number">5.13</span> Pulling &amp; Pushing.</h2>
+<p>For all these computers, you need to make sure you are <em>pushing</em> changes to <a href="https://github.com">GitHub</a> from your current machine so that when you get to the next computer you can <em>pull</em> down these changes.</p>
+</section>
+<section id="collaborations" class="level2" data-number="5.14">
+<h2 data-number="5.14" class="anchored" data-anchor-id="collaborations"><span class="header-section-number">5.14</span> Collaborations</h2>
+<p>With a <a href="https://github.com">GitHub</a> repository, several people can contribute to the same project and have access to the same content.</p>
+<div class="incremental">
+<ul class="incremental">
+<li>Can lead to conflicts</li>
+<li>Merging files</li>
+</ul>
+</div>
+</section>
+<section id="section" class="level2" data-background-image="media/github.png" data-background-size="fit" data-number="5.15">
+<h2 data-background-image="media/github.png" data-background-size="fit" data-number="5.15" class="anchored" data-anchor-id="section"><span class="header-section-number">5.15</span> </h2>
+</section>
+<section id="the-profile-page" class="level2" data-number="5.16">
+<h2 data-number="5.16" class="anchored" data-anchor-id="the-profile-page"><span class="header-section-number">5.16</span> The Profile Page</h2>
+<p><img src="media/dyerlab_repository.png" class="img-fluid"></p>
+</section>
+<section id="github-repositories" class="level2 smaller" data-number="5.17">
+<h2 class="smaller anchored" data-number="5.17" data-anchor-id="github-repositories"><span class="header-section-number">5.17</span> Github Repositories</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<ul>
+<li>history<br>
+</li>
+<li>files<br>
+</li>
+<li>description<br>
+</li>
+<li>settings<br>
+</li>
+<li>visibility<br>
+</li>
+<li>access</li>
+</ul>
+</div><div class="column" style="width:70%;">
+<p><img src="media/repo.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="access-controls" class="level2" data-number="5.18">
+<h2 data-number="5.18" class="anchored" data-anchor-id="access-controls"><span class="header-section-number">5.18</span> Access Controls</h2>
+<p><a href="https://github.com">GitHub</a> has a fine granularity of control over who can access content and how much access they can have.</p>
+<div class="incremental">
+<ul class="incremental">
+<li>Username + Password: Allows you to log into <a href="https://github.com">GitHub</a>.</li>
+<li>Access Control: Dictates who can see and check out repositories.</li>
+<li>Username + Personal Access Token: Allow you to push content back to <a href="https://github.com">GitHub</a>.</li>
+</ul>
+</div>
+</section>
+<section id="user-names-passwords" class="level2" data-number="5.19">
+<h2 data-number="5.19" class="anchored" data-anchor-id="user-names-passwords"><span class="header-section-number">5.19</span> User Names &amp; Passwords</h2>
+<p>If you are not using a password manager, PLEASE START TODAY.</p>
+<ul>
+<li>1Password</li>
+<li>LastPass</li>
+<li>mCrypt</li>
+</ul>
+</section>
+<section id="personal-access-tokens" class="level2" data-number="5.20">
+<h2 data-number="5.20" class="anchored" data-anchor-id="personal-access-tokens"><span class="header-section-number">5.20</span> Personal Access Tokens</h2>
+<p><code>Settings</code> <span class="math inline">\(\to\)</span> <code>Developer Settings</code> <span class="math inline">\(\to\)</span> <code>Personal Access Tokens</code></p>
+<p><img src="media/AccessTokens.png" class="img-fluid"></p>
+</section>
+<section id="scoped-tokens" class="level2 smaller" data-number="5.21">
+<h2 class="smaller anchored" data-number="5.21" data-anchor-id="scoped-tokens"><span class="header-section-number">5.21</span> Scoped Tokens</h2>
+<p><img src="media/ClassicAccessTokens.png" class="img-fluid"></p>
+<p>Select custom length and allow for enough time to not be a <em>problem</em>. Save long token securely.</p>
+</section>
+<section id="creating-a-repository" class="level2" data-number="5.22">
+<h2 data-number="5.22" class="anchored" data-anchor-id="creating-a-repository"><span class="header-section-number">5.22</span> Creating a Repository</h2>
+<p>From your profile page, select the <code>Repositories</code> menu and follow the instructions.<br>
+- Names &amp; Descriptions.<br>
+- Private vs Public.<br>
+- The <code>README.md</code> file as your ‘front page’.<br>
+- The <code>.gitignore</code> file.<br>
+- Licenses.<br>
+- Websites.</p>
+</section>
+<section id="section-1" class="level2" data-background-image="media/GitHubRepo.png" data-background-size="80%" data-number="5.23">
+<h2 data-background-image="media/GitHubRepo.png" data-background-size="80%" data-number="5.23" class="anchored" data-anchor-id="section-1"><span class="header-section-number">5.23</span> </h2>
+</section>
+<section id="online-editing" class="level2" data-number="5.24">
+<h2 data-number="5.24" class="anchored" data-anchor-id="online-editing"><span class="header-section-number">5.24</span> Online Editing</h2>
+<p>The repository interface allows:</p>
+<ul>
+<li>Adding and deleting of files.<br>
+</li>
+<li>Editing file content.</li>
+<li>Deploying to websites.</li>
+<li>Wiki/Comments/Feedback.</li>
+</ul>
+</section>
+<section id="going-forward" class="level2" data-number="5.25">
+<h2 data-number="5.25" class="anchored" data-anchor-id="going-forward"><span class="header-section-number">5.25</span> Going Forward</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img src="media/Canvas_logo.png" class="img-fluid"></p>
+</div><div class="column" style="width:50%;">
+<p>&nbsp;</p>
+<p><img src="media/GitHub_logo.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="questions" class="level2" data-number="5.26">
+<h2 data-number="5.26" class="anchored" data-anchor-id="questions"><span class="header-section-number">5.26</span> Questions</h2>
+<p>&nbsp;</p>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p>If you have any questions, please feel free to either post to the <a href="https://canvas.vcu.edu">Canvas</a> discussion board for the class or drop me an <a href="mailto://rjdyer@vcu.edu">email</a>.</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/peter_sellers.gif" class="middle img-fluid figure-img" alt="Peter Sellers looking bored" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p><a href="index.html">Return</a> to course table of contents.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./quarto.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Quarto</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./data_types.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Basic Data Types</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
